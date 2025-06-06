@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itrackcar/screens/main_navigation_screen.dart';
 
 class RegistrationSuccessScreen extends StatelessWidget {
   final Map<String, String?> vehicleDetails;
@@ -126,7 +127,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainNavigationScreen()), (route) => false);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,

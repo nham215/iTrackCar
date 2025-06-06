@@ -59,7 +59,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/audi_logo.png"
+  image_path: "assets/images/icon_app.png"
 
 
 # For information on the generic Dart part of this file, see the
@@ -105,8 +105,8 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/images/audi_logo.png
+  color: "#121212"
+  image: assets/images/logo_app.png
   android: true
   ios: true
   fullscreen: true
