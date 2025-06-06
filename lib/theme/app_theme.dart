@@ -8,6 +8,7 @@ class AppTheme {
   static const Color hintColor = Color(0xFF808080);
   static const Color success = Color(0xFFB3B3B3);
   static const Color grey600 = Color(0xFF85858A);
+  static const Color background = Color(0xFF121212);
 
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'CircularStd',
@@ -30,7 +31,7 @@ class AppTheme {
     ),
     checkboxTheme: CheckboxThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(6),
       ),
       side: const BorderSide(
         color: Color(0xFFB3B3B3),
@@ -48,24 +49,33 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: secondaryColor,
+      fillColor: Colors.black, 
       hintStyle: const TextStyle(color: hintColor),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide.none,
-      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      labelStyle: const TextStyle(color: Colors.white60),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(6),
+        borderSide: const BorderSide(
+          width: 1,
+          color: Color(0xFF414141),
+        ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(6),
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: Color(0xFF414141),
+        ),
       ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 16,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(6),
+        borderSide: const BorderSide(
+          width: 1,
+          color: Color(0xFF414141),
+        ),
       ),
+      suffixIconColor: Colors.white70,
+      floatingLabelBehavior: FloatingLabelBehavior.always,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itrackcar/theme/app_theme.dart';
 import 'forgot_password_screen.dart';
 import '../main_navigation_screen.dart';
 
@@ -16,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  backgroundColor: Colors.black,
+  backgroundColor: AppTheme.background,
   body: SafeArea(
     child: Center(
       child: SingleChildScrollView(
@@ -39,32 +40,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 40),
             TextField(
-              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: 'Email',
-                hintStyle: TextStyle(color: Colors.grey[600]),
+                hintText: 'Enter your email',
+                // label: Text('Email'), 
                 filled: true,
-                fillColor: Colors.grey[900],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
-                ),
-                suffixIcon: const Icon(Icons.email_outlined, color: Colors.grey),
+                suffixIcon: const Icon(Icons.email_outlined),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               obscureText: _obscurePassword,
-              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: 'Password',
-                hintStyle: TextStyle(color: Colors.grey[600]),
-                filled: true,
-                fillColor: Colors.grey[900],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
-                ),
+                hintText: 'Enter your password',
+                // label: Text('Password'),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword ? Icons.visibility_off : Icons.visibility,
