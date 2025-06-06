@@ -1,6 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 class DirectionsService {
   static const String _baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
@@ -76,5 +77,30 @@ class DirectionsService {
       points.add(LatLng(lat / 1E5, lng / 1E5));
     }
     return points;
+  }
+
+  static Future<List<LatLng>> getDirections_v2({
+    required LatLng origin,
+    required LatLng destination,
+  }) async {
+    List<LatLng> polylineCoordinates = [];
+    final polylinePoints = PolylinePoints();
+    final result = await polylinePoints.getRouteBetweenCoordinates(
+      googleApiKey: _apiKey,
+      request: PolylineRequest(
+        origin: PointLatLng(origin.latitude, origin.longitude),
+        destination: PointLatLng(destination.latitude, destination.longitude),
+        mode: TravelMode.driving
+      ),
+    );
+
+    if (result.points.isNotEmpty) {
+      result.points.forEach((PointLatLng point) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      });
+    } else {
+      print(result.errorMessage);
+    }
+    return polylineCoordinates;
   }
 } 

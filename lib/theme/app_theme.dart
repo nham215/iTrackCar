@@ -6,6 +6,8 @@ class AppTheme {
   static const Color accentColor = Color(0xFF3A3A3A);
   static const Color textColor = Colors.white;
   static const Color hintColor = Color(0xFF808080);
+  static const Color success = Color(0xFFB3B3B3);
+  static const Color grey600 = Color(0xFF85858A);
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
@@ -24,6 +26,24 @@ class AppTheme {
       bodyLarge: TextStyle(color: textColor),
       bodyMedium: TextStyle(color: textColor),
       titleMedium: TextStyle(color: hintColor),
+    ),
+    checkboxTheme: CheckboxThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      side: const BorderSide(
+        color: Color(0xFFB3B3B3),
+        width: 2,
+      ),
+      fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
+          // return Colors.white;
+        }
+        return Colors.transparent;
+      }),
+      checkColor: WidgetStateProperty.all<Color>(Color(0xFFB3B3B3)),
+      visualDensity: VisualDensity.compact,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
