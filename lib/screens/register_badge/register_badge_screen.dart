@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'manual/manual_registration_screen.dart';
+import 'scan/scan_camera_screen.dart';
 
 class RegisterBadgeScreen extends StatelessWidget {
   const RegisterBadgeScreen({super.key});
@@ -81,7 +82,12 @@ class RegisterBadgeScreen extends StatelessWidget {
               // Scan Option
               InkWell(
                 onTap: () {
-                  // TODO: Implement scan functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScanCameraScreen(),
+                    ),
+                  );
                 },
                 child: Container(
                   padding: const EdgeInsets.all(16),
