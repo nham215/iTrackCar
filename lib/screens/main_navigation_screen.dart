@@ -1,8 +1,8 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'tracking_screen.dart';
-import 'register_badge_screen.dart';
-import 'profile_screen.dart';
+import 'register_badge/register_badge_screen.dart';
+import 'profile/profile_screen.dart';
 
 
 class MainNavigationScreen extends StatefulWidget {

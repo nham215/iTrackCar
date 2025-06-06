@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart';
+import 'screens/welcome/splash_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {

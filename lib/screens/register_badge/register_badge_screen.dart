@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'manual_registration_screen.dart';
+import 'manual/manual_registration_screen.dart';
 
 class RegisterBadgeScreen extends StatelessWidget {
   const RegisterBadgeScreen({super.key});
@@ -27,7 +27,7 @@ class RegisterBadgeScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withAlpha((0.2 * 255).round()),
                             width: 1,
                           ),
                         ),
@@ -94,7 +94,7 @@ class RegisterBadgeScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withAlpha((0.1 * 255).round()),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(
@@ -153,7 +153,7 @@ class RegisterBadgeScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withAlpha((0.1 * 255).round()),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(

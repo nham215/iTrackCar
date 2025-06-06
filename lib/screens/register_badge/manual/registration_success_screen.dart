@@ -70,7 +70,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.1),
+              color: Colors.green.withAlpha((0.1 * 255).round()),
               shape: BoxShape.circle,
             ),
             child: const Icon(
