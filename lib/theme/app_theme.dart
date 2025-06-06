@@ -10,6 +10,7 @@ class AppTheme {
   static const Color grey600 = Color(0xFF85858A);
 
   static ThemeData darkTheme = ThemeData(
+    fontFamily: 'CircularStd',
     brightness: Brightness.dark,
     useMaterial3: true,
     scaffoldBackgroundColor: primaryColor,
