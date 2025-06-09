@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+
+import '../config/env_config.dart';
 
 class DirectionsService {
-  static const String _baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
-  static const String _apiKey = 'AIzaSyDEqusGOuao8qbpjf8Fe-96DtvvAbVeAGc'; // Replace with your API key
+  static const String _baseUrl = EnvConfig.googleMapsDirectionsUrl;
+  static final String _apiKey = EnvConfig.googleMapsApiKey;
 
   static Future<Map<String, dynamic>> getDirections({
     required LatLng origin,
@@ -23,7 +25,7 @@ class DirectionsService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        if (data['status'] == 'OK') {
+        if (data['status'] == 'OK' && data['routes'].isNotEmpty) {
           // Print response for debugging
           print('Directions API Response: ${response.body}');
           
@@ -77,30 +79,5 @@ class DirectionsService {
       points.add(LatLng(lat / 1E5, lng / 1E5));
     }
     return points;
-  }
-
-  static Future<List<LatLng>> getDirections_v2({
-    required LatLng origin,
-    required LatLng destination,
-  }) async {
-    List<LatLng> polylineCoordinates = [];
-    final polylinePoints = PolylinePoints();
-    final result = await polylinePoints.getRouteBetweenCoordinates(
-      googleApiKey: _apiKey,
-      request: PolylineRequest(
-        origin: PointLatLng(origin.latitude, origin.longitude),
-        destination: PointLatLng(destination.latitude, destination.longitude),
-        mode: TravelMode.driving
-      ),
-    );
-
-    if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-    } else {
-      print(result.errorMessage);
-    }
-    return polylineCoordinates;
   }
 } 
