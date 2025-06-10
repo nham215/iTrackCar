@@ -1,50 +1,47 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 
 import '../config/env_config.dart';
 
 class DirectionsService {
   static const String _baseUrl = EnvConfig.googleMapsDirectionsUrl;
   static final String _apiKey = EnvConfig.googleMapsApiKey;
+  static final _dio = Dio();
 
   static Future<Map<String, dynamic>> getDirections({
     required LatLng origin,
     required LatLng destination,
   }) async {
     try {
-      final response = await http.get(
-        Uri.parse(
-          '$_baseUrl?origin=${origin.latitude},${origin.longitude}'
-          '&destination=${destination.latitude},${destination.longitude}'
-          '&mode=driving'
-          '&key=$_apiKey',
-        ),
+      final response = await _dio.get(
+        _baseUrl,
+        queryParameters: {
+          'origin': '${origin.latitude},${origin.longitude}',
+          'destination': '${destination.latitude},${destination.longitude}',
+          'mode': 'driving',
+          'key': _apiKey,
+        },
       );
 
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        if (data['status'] == 'OK' && data['routes'].isNotEmpty) {
-          // Print response for debugging
-          print('Directions API Response: ${response.body}');
-          
-          final points = _decodePolyline(
-            data['routes'][0]['overview_polyline']['points'],
-          );
-          
-          // Print decoded points for debugging
-          print('Decoded Points: $points');
+      final data = response.data;
+      if (data['status'] == 'OK' && data['routes'].isNotEmpty) {
+        // Print response for debugging
+        print('Directions API Response: $data');
+        
+        final points = _decodePolyline(
+          data['routes'][0]['overview_polyline']['points'],
+        );
+        
+        // Print decoded points for debugging
+        print('Decoded Points: $points');
 
-          return {
-            'polylinePoints': points,
-            'distance': data['routes'][0]['legs'][0]['distance']['text'],
-            'duration': data['routes'][0]['legs'][0]['duration']['text'],
-          };
-        }
-        throw Exception('Directions API error: ${data['status']}');
+        return {
+          'polylinePoints': points,
+          'distance': data['routes'][0]['legs'][0]['distance']['text'],
+          'duration': data['routes'][0]['legs'][0]['duration']['text'],
+        };
       }
-      throw Exception('Failed to fetch directions: ${response.statusCode}');
+      throw Exception('Directions API error: ${data['status']}');
     } catch (e) {
       print('Error getting directions: $e');
       rethrow;
